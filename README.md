@@ -137,6 +137,25 @@ result = whisper.decode(model, mel, options)
 print(result.text)
 ```
 
+## Docker usage
+
+Build image and install whisper:
+
+    docker build -t whisper:latest .
+
+
+Run detached container:
+
+    docker run --gpus all --name whisper -v $PWD:/whisper_workspace -d whisper:latest
+
+Bash into a running container:
+
+    docker exec -it whisper /bin/bash
+
+Transcribe file in the container:
+
+    whisper /whisper_workspace/audio.mp3 --language Belarusian --model_dir /whisper_workspace --model medium --output_format txt
+
 ## More examples
 
 Please use the [🙌 Show and tell](https://github.com/openai/whisper/discussions/categories/show-and-tell) category in Discussions for sharing more example usages of Whisper and third-party extensions such as web demos, integrations with other tools, ports for different platforms, etc.
